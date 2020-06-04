@@ -46,7 +46,7 @@ def plot_phone(data):
     
     # ---- Phone Service Customer
 
-    ax = pd.crosstab( index=data['phone_service'],columns=data['churn_label']).plot(kind = 'barh', color=['#53a4b1','#c34454'], figsize = (8,6))
+    ax = pd.crosstab( index=data['phone_service'],columns=data['churn_label'], normalize='True').plot(kind = 'barh', color=['#53a4b1','#c34454'], figsize = (8,6))
 
     # Plot Configuration
     ax.xaxis.set_major_formatter(mtick.PercentFormatter())
@@ -67,7 +67,7 @@ def plot_internet(data):
 
     # ---- Internet Service Customer
 
-    ax = pd.crosstab(index=data['internet_service'],columns=data['churn_label']).plot(kind = 'barh', color=['#53a4b1','#c34454'], figsize = (8,6))
+    ax = pd.crosstab(index=data['internet_service'],columns=data['churn_label'], normalize=True).plot(kind = 'barh', color=['#53a4b1','#c34454'], figsize = (8,6))
 
     # Plot Configuration
     ax.xaxis.set_major_formatter(mtick.PercentFormatter())
@@ -135,7 +135,7 @@ def plot_revenue_loss(data):
     
     ch = pd.crosstab(index=datachurn['internet_service'],  columns=datachurn['phone_service'], values=datachurn['total_charges'], aggfunc=sum)
 
-    ax = ch.plot(kind = 'bar', figsize=(8, 6))
+    ax = ch.plot(kind = 'bar', color=['#53a4b1','#c34454', '#228B22'], figsize=(8, 6))
 
     # Plot Configuration
     ax.yaxis.set_major_formatter(mtick.StrMethodFormatter('${x:,.0f}'))
