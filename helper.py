@@ -128,3 +128,28 @@ def plot_tenure_cltv(data):
 
     return(result)
 
+def plot_revenue_loss(data):
+
+    # ---- Data Revenue Loss Filter
+    datachurn = data[data['churn_label']=='Yes']
+    
+    ch = pd.crosstab(index=datachurn['internet_service'],  columns=datachurn['phone_service'], values=datachurn['total_charges'], aggfunc=sum)
+
+    ax = ch.plot(kind = 'bar', figsize=(8, 6))
+
+    # Plot Configuration
+    ax.yaxis.set_major_formatter(mtick.StrMethodFormatter('${x:,.0f}'))
+    plt.axes().get_xaxis().set_label_text('')
+    plt.xticks(rotation = 360)
+    plt.legend(['Multiple Lines','No', 'Single Lines'],fancybox=True,shadow=True)
+    plt.title('Revenue Loss by Services')
+
+    # Save png file to IO buffer
+    figfile = BytesIO()
+    plt.savefig(figfile, format='png')
+    figfile.seek(0)
+    figdata_png = base64.b64encode(figfile.getvalue())
+    result = str(figdata_png)[2:-1]
+
+    return(result)
+

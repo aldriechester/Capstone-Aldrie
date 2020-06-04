@@ -78,7 +78,7 @@
 					</button>
 					<button class="tablinks" onclick="openTab(event, 'subscription')">Subscription Service
 					</button>
-					<button class="tablinks" onclick="openTab(event, 'Own')">(Create-Your-Own)
+					<button class="tablinks" onclick="openTab(event, 'Own')">Revenue Loss
 					</button>
 				</div>
 			</div>
@@ -113,7 +113,13 @@
 				</div>
 
 				<div id="Own" class="tabcontent">
-				  <!-- Define your own analysis -->
+					<br>
+				  <h3 style="color: #333333;text-align:center">Revenue Loss Because of Churn</h3>
+				  <div class="img-container">
+					{% if funded_plot != None %}
+				  	<img src="data:image/png;base64,{{ plot_revenue_loss_res }}" style="width:46.5%;">
+						{% endif %}
+					</div>
 				</div>
 
 			</div>
